@@ -7,17 +7,17 @@ Do tego projektu użyjemy Pythona  3.8, a tak dogłębniej to jedną z jego bibl
 
 # Plan
 
--menu główne (Współpraca)
+-menu główne (M.Kapłanek)
 
--grafika postaci (Współpraca)
+-grafika postaci (T.Paruzel)
 
--animacje postaci 
+-animacje postaci (Współpraca) 
 
--design poziomów 
+-design poziomów (T.Paruzel)
 
--Fizyka gry 
+-Fizyka gry (M.Kapłanek)
 
--przeciwnicy i implementacja ich zachowania
+-przeciwnicy i implementacja ich zachowania (T.Paruzel-design, M.Kapłanek- zachowanie)  
 
 -zapis gry (opcjonalnie) (Współpraca)
 
