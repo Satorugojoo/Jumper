@@ -1,0 +1,333 @@
+import pygame as Py
+import sys
+import time
+
+mainClock = Py.time.Clock()
+from pygame.locals import *
+Py.init()
+Py.display.set_caption('Jumper')
+screen = Py.display.set_mode((800,600),0,32)
+Font = Py.font.SysFont(None,40)
+Font_S = Py.font.SysFont(None,20)
+Font_B = Py.font.SysFont(None,60)
+
+def draw_text(text, Font, color, surface ,x ,y):
+    
+    textobj = Font.render(text, 1, color)
+    textrect = textobj.get_rect()
+    textrect.topleft = (x,y)
+    surface.blit(textobj, textrect)
+    
+click = False
+
+def main_menu():
+    
+    while True:
+        
+        tlo = Py.image.load('tło_menu_główne.jpg')
+        screen.fill((0,0,0)) 
+        screen.blit(tlo,(0, 0))
+        draw_text('Menu Główne', Font,(255,255,255), screen, 325, 50)
+#         draw_text('GRAJ!', Font,(255,255,255), screen, 350, 125)
+#         draw_text('Opcje', Font,(255,255,255), screen, 350, 225)
+#         draw_text('Zakończ', Font,(255,255,255), screen, 350,325)
+        
+        mx, my =Py.mouse.get_pos()
+    
+        button_1 = Py.Rect(325,100,150,50)
+        button_2 = Py.Rect(325,200,150,50)
+        button_3 = Py.Rect(325,300,150,50)
+        button_6 = Py.Rect(650,570,150,30)
+        
+        if button_1.collidepoint((mx, my)):
+            if click: 
+                Game()
+        if button_2.collidepoint((mx, my)):
+            if click: 
+                Options()
+        if button_3.collidepoint((mx, my)):
+            if click: 
+                Py.quit()
+                sys.exit(0)
+        if button_6.collidepoint((mx, my)):
+            if click: 
+                Tworcy()
+        
+        Py.draw.rect(screen, (123,222,175), button_1)
+        Py.draw.rect(screen, (123,222,175), button_2)
+        Py.draw.rect(screen, (123,222,175), button_3)
+        Py.draw.rect(screen, (72,100,49), button_6)
+        
+        
+        draw_text('GRAJ!', Font,(255,255,255), screen, 355, 110)
+        draw_text('Opcje', Font,(255,255,255), screen, 353, 210)
+        draw_text('Zakończ', Font,(255,255,255), screen, 345, 310)
+        draw_text('Twórcy', Font,(255,255,255), screen, 675, 570)
+        
+        click = False
+        for event in Py.event.get():
+            if event.type == QUIT:
+                Py.quit()
+                sys.exit(0)
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    Py.quit()
+                    sys.exit(0)
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+        Py.display.update()
+        mainClock.tick(60)
+
+def Game():
+    running = True
+    click = False
+    
+    y_nagroda = 416
+    y_chopek = 417
+    y_wrog_1 = 375
+    x_nagroda = 20
+    x_chopek = 740
+    x_wrog_1 = 220
+    move_enemy = 2
+    move = 7
+    
+    while running:
+        
+        mx, my =Py.mouse.get_pos()
+        
+        chopek = Py.image.load('chopek.png')
+        nagroda = Py.image.load('nagroda.png')
+        wrog_1 = Py.image.load('wrog_1.png')
+        tlo = Py.image.load('tło_level.jpg')
+        
+        button_5 = Py.Rect(18,570,200,30)
+        floor = Py.Rect(0,500,800,100)
+        
+        screen.fill((0,0,0)) 
+        screen.blit(tlo,(0, 0))
+        
+        Py.draw.rect(screen, (134,141,17), floor)
+        Py.draw.rect(screen, (168,177,217), button_5)
+        
+        screen.blit(wrog_1, (x_wrog_1,y_wrog_1))
+        screen.blit(chopek, (x_chopek,y_chopek))
+        screen.blit(nagroda, (x_nagroda,y_nagroda))
+        
+        draw_text(' <-- Powrót do menu głównego ', Font_S, (48,74,253), screen, 20, 575)
+        draw_text(' Jumper ', Font,(255,255,255), screen, 20, 20)
+        if button_5.collidepoint((mx, my)):
+            if click: 
+                main_menu()
+        for event in Py.event.get():
+            if event.type == QUIT:
+                Py.quit()
+                sys.exit(0)
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    Py.quit()
+                    sys.exit(0)
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+            
+        Py.display.update()
+        mainClock.tick(60)
+        
+        x_wrog_1 -= move_enemy
+        if x_wrog_1 < 200:
+            move_enemy *= -1 
+        elif x_wrog_1 > 600:
+            move_enemy *= -1
+            
+        keys = Py.key.get_pressed()
+        if keys[Py.K_a]:
+            x_chopek -= move
+        elif keys[Py.K_d]:
+            x_chopek += move
+        elif keys[Py.K_w]:
+            y_chopek -= move
+        elif keys[Py.K_s]:
+            y_chopek += move    
+            
+        screen.fill((0,0,0)) 
+        screen.blit(tlo,(0, 0))
+        Py.draw.rect(screen, (134,141,17), floor)
+        Py.draw.rect(screen, (168,177,217), button_5)
+
+        screen.blit(wrog_1, (x_wrog_1,y_wrog_1))
+        screen.blit(chopek, (x_chopek,y_chopek))
+        screen.blit(nagroda, (x_nagroda,y_nagroda))
+
+        draw_text(' <-- Powrót do menu głównego ', Font_S, (48,74,253), screen, 20, 575)
+        draw_text(' Jumper ', Font,(255,255,255), screen, 20, 20)
+        
+#         if Py.sprite.spritecollideany(chopek, wrog_1):
+#                 player.kill()
+#                 running = False
+#         & (y_chopek >= y_wrog_1) & (y_chopek <= y_wrog_1+60):           
+    
+        if (x_chopek < x_wrog_1+147) & (x_chopek+50 > x_wrog_1) & (y_chopek+78 >= y_wrog_1): 
+            screen.fill((0,0,0))
+            draw_text(' PRZEGRAŁEŚ :(', Font_B, (255,0,0), screen, 300, 300)
+            Py.display.flip()
+            time.sleep(5)
+            running = False 
+        if x_chopek < x_nagroda+45:
+            screen.fill((0,0,0))
+            draw_text(' Wygrałeś! :) ', Font_B, (255,0,0), screen, 300, 300)
+            Py.display.flip()
+            time.sleep(5)
+            running = False 
+        if button_5.collidepoint((mx, my)):
+            if click: 
+                main_menu()
+        for event in Py.event.get():
+            if event.type == QUIT:
+                Py.quit()
+                sys.exit(0)
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    Py.quit()
+                    sys.exit(0)
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+        Py.display.flip()
+        mainClock.tick(60)
+#     
+#             if keys[Py.K_d]:
+#             x_chopek += move
+#             screen.fill((0,0,0)) 
+#             screen.blit(tlo,(0, 0))
+
+#             Py.draw.rect(screen, (134,141,17), floor)
+#             Py.draw.rect(screen, (168,177,217), button_5)
+
+#             screen.blit(wrog_1, (220,375))
+#             screen.blit(chopek, (x_chopek + move,y_chopek))
+#             screen.blit(nagroda, (x_nagroda,y_nagroda))
+
+#             draw_text(' <-- Powrót do menu głównego ', Font_S, (48,74,253), screen, 20, 575)
+#             draw_text(' Phopper ', Font,(255,255,255), screen, 20, 20)
+#             if button_5.collidepoint((mx, my)):
+#                 if click: 
+#                     main_menu()
+#             for event in Py.event.get():
+#                 if event.type == QUIT:
+#                     Py.quit()
+#                     sys.exit(0)
+#                 if event.type == KEYDOWN:
+#                     if event.key == K_ESCAPE:
+#                         Py.quit()
+#                         sys.exit(0)
+#                 if event.type == MOUSEBUTTONDOWN:
+#                     if event.button == 1:
+#                         click = True
+            
+#             Py.display.update()
+#             mainClock.tick(60)
+        
+#         if keys[Py.K_SPACE]:
+#             y_chopek -= move
+#             screen.fill((0,0,0)) 
+#             screen.blit(tlo,(0, 0))
+        
+#             Py.draw.rect(screen, (134,141,17), floor)
+#             Py.draw.rect(screen, (168,177,217), button_5)
+        
+#             screen.blit(wrog_1, (220,375))
+#             screen.blit(chopek, (x_chopek,y_chopek - move))
+#             screen.blit(nagroda, (x_nagroda,y_nagroda))
+        
+#             draw_text(' <-- Powrót do menu głównego ', Font_S, (48,74,253), screen, 20, 575)
+#             draw_text(' Phopper ', Font,(255,255,255), screen, 20, 20)
+#             if button_5.collidepoint((mx, my)):
+#                 if click: 
+#                     main_menu()
+#             for event in Py.event.get():
+#                 if event.type == QUIT:
+#                     Py.quit()
+#                     sys.exit(0)
+#                 if event.type == KEYDOWN:
+#                     if event.key == K_ESCAPE:
+#                         Py.quit()
+#                         sys.exit(0)
+#                 if event.type == MOUSEBUTTONDOWN:
+#                     if event.button == 1:
+#                         click = True
+            
+#             Py.display.update()
+#             mainClock.tick(60)
+
+
+def Options():
+    running = True
+    click = False
+    while running:
+        mx, my =Py.mouse.get_pos()
+        screen.fill((0,0,0))
+        draw_text('Cel gry oraz sterowanie', Font,(255,255,255), screen, 20, 20)
+        button_4 = Py.Rect(18,490,150,50)
+        Py.draw.rect(screen, (255,0,0), button_4)
+        draw_text(' <-- Powrót ', Font,(255,255,255), screen, 20, 500)
+        draw_text(' Celem gry jest dojście do wafelka z lodami, która znajduje się na końcu danego poziomu. ', Font_S,(255,255,255), screen,60 , 100)
+        draw_text(' Naszą przeprawę urozmaicą przeszkody oraz przeciwnicy z różnymi umiejętnościami. ', Font_S,(255,255,255), screen,60 , 120)
+        draw_text(' Sterowanie: ', Font_S,(255,255,255), screen, 60, 160)
+        draw_text(' A - ruch w lewo', Font_S,(255,255,255), screen, 60, 190)
+        draw_text(' D - ruch w prawo ', Font_S,(255,255,255), screen, 60, 220)
+        draw_text(' W - skok ', Font_S,(255,255,255), screen, 60, 250)   
+        if button_4.collidepoint((mx, my)):
+            if click: 
+                main_menu()
+        for event in Py.event.get():
+            if event.type == QUIT:
+                Py.quit()
+                sys.exit(0)
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    Py.quit()
+                    sys.exit(0)
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+            
+        Py.display.update()
+        mainClock.tick(60)    
+
+
+def Tworcy():
+    running = True
+    click = False
+    while running:
+        mx, my =Py.mouse.get_pos()
+        tlo = Py.image.load('tło_twórców.jpg') 
+        screen.fill((0,0,0))
+        screen.blit(tlo,(0, 0))
+        draw_text(' PROgramiści: ', Font_B,(39,150,146), screen, 300, 100)
+        draw_text(' Miłosz Kapłanek ', Font_B,(2,229,74), screen, 300, 200)
+        draw_text(' Tomasz Paruzel', Font_B,(2,229,74), screen, 300, 300)
+        button_7 = Py.Rect(18, 490, 150, 50)
+        Py.draw.rect(screen, (148, 176 ,58), button_7)
+        draw_text(' <-- Powrót ', Font,(255,0,0), screen, 20, 500)
+        if button_7.collidepoint((mx, my)):
+            if click: 
+                main_menu()
+        for event in Py.event.get():
+            if event.type == QUIT:
+                Py.quit()
+                sys.exit(0)
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    Py.quit()
+                    sys.exit(0)
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+            
+        Py.display.update()
+        mainClock.tick(60)
+    
+main_menu()
