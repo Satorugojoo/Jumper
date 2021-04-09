@@ -34,4 +34,4 @@ Oczywiście jest wiele elementów do wprowadzdenia takich jak np. niemożność 
 
 # Uruchomienie
 
-Oczywiście kod znajduje się w alpha.txt, należy również pobrać obrazki aby gra w pełni działała. Należy się też upenwić że ma się dostęp do bibliotek.   
+Oczywiście kod znajduje się w 'Alpha', należy również pobrać obrazki aby gra w pełni działała. Należy się też upenwić że ma się dostęp do bibliotek.   
