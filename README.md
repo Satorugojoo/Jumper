@@ -29,3 +29,5 @@ W wersji Alpha korzystamy z trzech bibliotek/modułów: pygame, sys oraz time. G
 Jak można się samemu przekonać nie jest to skomplikowany kod. Zaimplemenntowany sotał narazie tylko 1 niepełny poziom oraz fizyka w tej grze jeszcze nie istnieje.
 Dodane też są kolizje pomiędzy graczem o obiektami, które wyświetlają odpowiedni komunikat. Tła są grafikami pobranymi z internetu, które w przyszłości zostaną zastąpione własnymi grafikami.
 
+Oczywiście jest wiele elementów do wprowadzdenia takich jak np. niemożność wyjśica za ekran, fizyka skoku oraz zatopienie się postaci w ziemii. W najbliższych tygodniach będą one poprawiane, jak i dodane kolejne poziomy gry z różnorodnymi przeciwnikami. 
+
