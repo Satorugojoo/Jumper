@@ -23,4 +23,9 @@ Do tego projektu użyjemy Pythona  3.8, a tak dogłębniej to jedną z jego bibl
 
 -efekty dźwiękowe (Współpraca)
 
+# Prace
+
+W wersji Alpha korzystamy z trzech bibliotek/modułów: pygame, sys oraz time. Grafiki postaci oraz nagrody zostały stworzone przez Tomasza.
+Jak można się samemu przekonać nie jest to skomplikowany kod. Zaimplemenntowany sotał narazie tylko 1 niepełny poziom oraz fizyka w tej grze jeszcze nie istnieje.
+Dodane też są kolizje pomiędzy graczem o obiektami, które wyświetlają odpowiedni komunikat. 
 
