@@ -40,7 +40,7 @@ def main_menu():
 
         if button_1.collidepoint((mx, my)):
             if click:
-                game()
+                level_2()
         if button_2.collidepoint((mx, my)):
             if click:
                 options()
@@ -79,7 +79,7 @@ def main_menu():
         mainClock.tick(60)
 
 
-def game():
+def level_1():
     global click
     click = False
 
@@ -90,8 +90,6 @@ def game():
     chopek_width = 25
     chopek_height = 64
 
-    level = 0
-
     y_wrog_1 = 480
     x_wrog_1 = 220
     wrog_width = 46
@@ -99,7 +97,7 @@ def game():
 
     x_nagroda = 20
     y_nagroda = 470
-    nagroda_width = 70
+    nagroda_width = 30
     nagroda_height = 50
 
     move_enemy = 2
@@ -118,11 +116,7 @@ def game():
         chopek = py.image.load('elementy/gracz.png')
         nagroda = py.image.load('elementy/T1.png')
         wrog_1 = py.image.load('elementy/M1.png')
-
-        if level == 0:
-            tlo_1 = py.image.load('tła/tło 1.png')
-        else:
-            tlo_1 = py.image.load('tła/tło 2.png')
+        tlo_1 = py.image.load('tła/tło 1.png')
 
         button_5 = py.Rect(700, 5, 100, 25)
 
@@ -208,33 +202,12 @@ def game():
         if x_chopek < x_nagroda + nagroda_width and x_chopek + chopek_width > x_nagroda \
                 and y_chopek >= y_nagroda:
 
-                level = level + 1
-
-                if level == 2:
                     screen.fill((0, 0, 0))
-                    draw_text(' Wygrałeś! :) ', font_B, (255, 0, 0), screen, 250, 300)
-                    py.display.flip()
-                    time.sleep(3.5)
-                    running = False
-                else:
-                    screen.fill((0, 0, 0))
-                    x_chopek = 670
                     draw_text(' Gratuluję, kolejny poziom na ciebie czeka  :)', font, (255, 0, 0), screen, 100, 300)
                     py.display.flip()
                     time.sleep(2.0)
 
-                    screen.fill((0, 0, 0))
-                    screen.blit(tlo_1, (0, 0))
-
-                    py.draw.rect(screen, (168, 177, 217), button_5)
-                    draw_text('Menu Główne', font_S, (48, 74, 253), screen, 710, 10)
-
-                    screen.blit(wrog_1, (x_wrog_1, y_wrog_1, wrog_width, wrog_height))
-                    screen.blit(chopek, (x_chopek, y_chopek, chopek_width, chopek_height))
-                    screen.blit(nagroda, (x_nagroda, y_nagroda, nagroda_width, nagroda_height))
-
-                    py.display.update()
-                    mainClock.tick(60)
+                    level_2()
 
         #obsługa przycisków w tym momencie przycisku Main menu
 
@@ -255,6 +228,191 @@ def game():
         py.display.flip()
         mainClock.tick(60)
 
+def level_2():
+
+    global click
+    click = False
+
+    running = True
+
+    y_chopek = 480
+    x_chopek = 670
+    chopek_width = 25
+    chopek_height = 64
+
+    x_wrog_1 = 520
+    y_wrog_1 = 480
+    wrog_width = 46
+    wrog_height = 63
+
+    x_wrog_2 = 220
+    y_wrog_2 = 480
+    wrog_width_2 = 46
+    wrog_height_2 = 63
+
+    x_nagroda = 20
+    y_nagroda = 470
+    nagroda_width = 30
+    nagroda_height = 50
+
+    move_enemy_1 = 2
+    move_enemy_2 = 2
+    move = 9
+    jumpcount = 10
+    jump = False
+
+    x_block_1 = 475
+    y_block_1 = 400
+    block_width_1 = 50
+    block_height_1 = 20
+
+    x_block_2 = 275
+    y_block_2 = 400
+    block_width_2 = 50
+    block_height_2 = 20
+
+    walk = 0
+    left = False
+    right = False
+
+    while running:
+
+        mx, my = py.mouse.get_pos()
+
+        chopek = py.image.load('elementy/gracz.png')
+        nagroda = py.image.load('elementy/T1.png')
+        wrog_1 = py.image.load('elementy/M1.png')
+        tlo_2 = py.image.load('tła/tło 2.png')
+        wrog_2 = py.image.load('elementy/M1.png')
+
+        Block_1 = py.Rect(x_block_1, y_block_1, block_width_1, block_height_1)
+        Block_2 = py.Rect(x_block_2, y_block_2, block_width_2, block_height_2)
+        #button_5 = py.Rect(700, 5, 100, 25)
+
+        button_5 = py.Rect(700, 5, 100, 25)
+
+        screen.fill((0, 0, 0))
+        screen.blit(tlo_2, (0, 0))
+
+        py.draw.rect(screen, (168, 177, 217), button_5)
+        draw_text('Menu Główne', font_S, (48, 74, 253), screen, 710, 10)
+
+        py.draw.rect(screen, (19, 33, 161), Block_1)
+        py.draw.rect(screen, (19, 33, 161), Block_2)
+
+        screen.blit(wrog_1, (x_wrog_1, y_wrog_1, wrog_width, wrog_height))
+        screen.blit(wrog_2, (x_wrog_2, y_wrog_2, wrog_width_2, wrog_height_2))
+        screen.blit(chopek, (x_chopek, y_chopek, chopek_width, chopek_height))
+        screen.blit(nagroda, (x_nagroda, y_nagroda, nagroda_width, nagroda_height))
+
+        wlewo = [py.image.load('elementy/GL1.png'), py.image.load('elementy/GL2.png'),
+                 py.image.load('elementy/GL3.png'), py.image.load('elementy/GL4.png'),
+                 py.image.load('elementy/GL5.png'), py.image.load('elementy/GL6.png'),
+                 py.image.load('elementy/GL7.png'), py.image.load('elementy/GL8.png'),
+                 py.image.load('elementy/GL9.png')]
+        wprawo = [py.image.load("elementy/GR1.png"), py.image.load('elementy/GR2.png'),
+                  py.image.load('elementy/GR3.png'), py.image.load('elementy/GR4.png'),
+                  py.image.load('elementy/GR5.png'), py.image.load('elementy/GR6.png'),
+                  py.image.load('elementy/GR7.png'), py.image.load('elementy/GR8.png'),
+                  py.image.load('elementy/GR9.png')]
+
+        if walk + 1 >= 27:
+            walk = 0
+        if left:
+            screen.blit(wlewo[walk // 3], (x_chopek, y_chopek))
+            walk += 1
+        elif right:
+            screen.blit(wprawo[walk // 3], (x_chopek, y_chopek))
+            walk += 1
+        else:
+            screen.blit(chopek, (x_chopek, y_chopek))
+
+        py.display.update()
+        mainClock.tick(60)
+
+        x_wrog_1 -= move_enemy_1  # ruch przeciwnika
+        if x_wrog_1 < 200:
+            move_enemy_1 *= -1
+        elif x_wrog_1 > 600:
+            move_enemy_1 *= -1
+
+        x_wrog_2 -= move_enemy_2  # ruch przeciwnika
+        if x_wrog_2 < 200:
+            move_enemy_2 *= -1
+        elif x_wrog_2 > 600:
+            move_enemy_2 *= -1
+
+        keys = py.key.get_pressed()  # ruch gracza
+        if (keys[py.K_a] or keys[py.K_LEFT]) and x_chopek > move:
+            x_chopek -= move
+            left = True
+            right = False
+        elif (keys[py.K_d] or keys[py.K_RIGHT]) and x_chopek < screen.get_width() - chopek_width:
+            x_chopek += move
+            right = True
+            left = False
+        else:
+            right = False
+            left = False
+            walk = move
+        if not jump:
+            if keys[py.K_SPACE] or keys[py.K_UP] or keys[py.K_w]:
+                jump = True
+                right = False
+                left = False
+        else:
+            if jumpcount >= -10:
+                neg = 1
+                if jumpcount < 0:
+                    neg = -1
+                y_chopek -= (jumpcount ** 2) * 0.5 * neg
+                jumpcount -= 1
+            else:
+                jump = False
+                jumpcount = 10
+
+        # informacje wyskakujące w zależności czy gracz wygrał czy przegrał
+
+        if (x_chopek < x_wrog_1 + wrog_width) & (x_chopek + chopek_width > x_wrog_1) & \
+                (y_chopek >= y_wrog_1):
+            screen.fill((0, 0, 0))
+            draw_text(' PRZEGRAŁEŚ :(', font_B, (255, 0, 0), screen, 250, 300)
+            py.display.flip()
+            time.sleep(2.0)
+            running = False
+            main_menu()
+        if (x_chopek < x_wrog_2 + wrog_width_2) & (x_chopek + chopek_width > x_wrog_2) & \
+                (y_chopek >= y_wrog_2):
+            screen.fill((0, 0, 0))
+            draw_text(' PRZEGRAŁEŚ :(', font_B, (255, 0, 0), screen, 250, 300)
+            py.display.flip()
+            time.sleep(2.0)
+            running = False
+            main_menu()
+        if x_chopek < x_nagroda + nagroda_width and x_chopek + chopek_width > x_nagroda \
+                and y_chopek >= y_nagroda:
+                screen.fill((0, 0, 0))
+                draw_text(' Wygrałeś, kozak z ciebie  :)', font, (255, 0, 0), screen, 100, 300)
+                py.display.flip()
+                time.sleep(2.0)
+                main_menu()
+
+        if button_5.collidepoint((mx, my)):
+            if click:
+                main_menu()
+        for event in py.event.get():
+            if event.type == QUIT:
+                py.quit()
+                sys.exit(0)
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    main_menu()
+            if event.type == MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    click = True
+
+        py.display.flip()
+        mainClock.tick(60)
 
 def options():
     running = True
@@ -298,7 +456,6 @@ def options():
         py.display.update()
         mainClock.tick(60)
 
-
 def tworcy():
     running = True
 
@@ -332,6 +489,5 @@ def tworcy():
 
         py.display.update()
         mainClock.tick(60)
-
 
 main_menu()
