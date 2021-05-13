@@ -87,7 +87,7 @@ def game():
 
     y_chopek = 480
     x_chopek = 670
-    chopek_width = 63
+    chopek_width = 25
     chopek_height = 64
 
     level = 0
