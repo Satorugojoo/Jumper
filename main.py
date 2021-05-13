@@ -115,15 +115,13 @@ def game():
 
         mx, my = py.mouse.get_pos()
 
+        chopek = py.image.load('elementy/gracz.png')
+        nagroda = py.image.load('elementy/T1.png')
+        wrog_1 = py.image.load('elementy/M1.png')
+
         if level == 0:
             tlo_1 = py.image.load('tła/tło 1.png')
-            chopek = py.image.load('elementy/gracz.png')
-            nagroda = py.image.load('elementy/T1.png')
-            wrog_1 = py.image.load('elementy/M1.png')
         else:
-            chopek = py.image.load('elementy/gracz.png')
-            nagroda = py.image.load('elementy/T1.png')
-            wrog_1 = py.image.load('elementy/M1.png')
             tlo_1 = py.image.load('tła/tło 2.png')
 
         button_5 = py.Rect(700, 5, 100, 25)
