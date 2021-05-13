@@ -199,7 +199,7 @@ def game():
         # informacje wyskakujące w zależności czy gracz wygrał czy przegrał
 
         if (x_chopek < x_wrog_1 + wrog_width) & (x_chopek + chopek_width > x_wrog_1) &\
-                (y_chopek + chopek_height >= y_wrog_1):
+                (y_chopek >= y_wrog_1):
             screen.fill((0, 0, 0))
             draw_text(' PRZEGRAŁEŚ :(', font_B, (255, 0, 0), screen, 250, 300)
             py.display.flip()
@@ -235,24 +235,6 @@ def game():
 
                     py.display.update()
                     mainClock.tick(60)
-
-
-                # informacje wyskakujące w zależności czy gracz wygrał czy przegrał
-
-                    if (x_chopek < x_wrog_1 + wrog_width) & (x_chopek + chopek_width > x_wrog_1) & \
-                            (y_chopek + chopek_height >= y_wrog_1):
-                        screen.fill((0, 0, 0))
-                        draw_text(' PRZEGRAŁEŚ :(', font_B, (255, 0, 0), screen, 250, 300)
-                        py.display.flip()
-                        time.sleep(3.5)
-                        running = False
-                    if x_chopek < x_nagroda + nagroda_width and x_chopek + chopek_width > x_nagroda \
-                        and y_chopek >= y_nagroda:
-                        screen.fill((0, 0, 0))
-                        draw_text(' Wygrałeś! :) ', font_B, (255, 0, 0), screen, 250, 300)
-                        py.display.flip()
-                        time.sleep(3.5)
-                        running = False
 
         #obsługa przycisków w tym momencie przycisku Main menu
 
