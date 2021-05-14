@@ -31,6 +31,9 @@ Dodane też są kolizje pomiędzy graczem o obiektami, które wyświetlają odpo
 
 Oczywiście jest wiele elementów do wprowadzdenia takich jak np. niemożność wyjśica za ekran, fizyka skoku oraz zatopienie się postaci w ziemii. W najbliższych tygodniach będą one poprawiane, jak i dodane kolejne poziomy gry z różnorodnymi przeciwnikami. 
 
+W pliku main.py znajduje się najnowsza wersja gry, gdzie znajdują się już wszystkie włsnoręcznie zrobione grafiki. Znajdują się one w folderach: tła i elementów.
+Dodane są również również animacje portlau, postaci oraz przeciwnika. Również został dodany skok oraz ulepszone zostały kolizje. Zmieniliśmy też strukturę kody, która teraz posiada klasy. Chcemy dodać możliwość wybierania poziomów oraz liczbę żyć.   
+
 
 # Uruchomienie
 
