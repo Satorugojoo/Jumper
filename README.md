@@ -45,4 +45,27 @@ uniknęliśmy parę problemów związanych z budową kodu i powtarzaniem pewnych
 
 # Uruchomienie
 
-Oczywiście kod znajduje się w 'Alpha', należy również pobrać obrazki aby gra w pełni działała. Należy się też upenwić że ma się dostęp do bibliotek.   
+Oczywiście kod znajduje się w 'Alpha', należy również pobrać obrazki aby gra w pełni działała. Należy się też upenwić że ma się dostęp do bibliotek.
+
+
+# Najnowsza wersja main.py
+
+W pliku main.py znajduje się najnowsza wersja gry, gdzie znajdują się nowe włsnoręcznie zrobione grafiki.
+W najnowszej wersji dodane zostały:
+- Kolizja z platformami
+- Nowy skok
+- Nowa grawitacja
+- Poziomy 4 oraz 5
+- Przeciwnik nr 2
+- Animacja przeciwnika nr 2
+- Klasa gracza, przeciwnika, platformy
+- funkcja sprawdzająca czy postać jest w powietrzu
+- W pewnych miejscach skróciliśmy kod 
+
+W przyszłości mamy zamiar poprawić kolizję z nowym przeciwnikiem, dodać element losowy (np. pozycja przeciwników)
+design poziomów 3,4,5; nowy przeciwnik poruszający się po okręgu, mapa świata pokazująca postęp gry, a także muzyke
+grającą w tle.
+
+
+
+
